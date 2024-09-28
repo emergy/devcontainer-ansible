@@ -14,6 +14,9 @@ RUN apt-get update && \
         ansible-lint \
         yamllint \
         molecule \
+        'molecule-plugins[vagrant]' \
+        'molecule-plugins[docker]' \
+        'molecule-plugins[containers]' \
         argcomplete && \
     activate-global-python-argcomplete
 

@@ -4,17 +4,17 @@
 	"name": "ansible",
 
 	// Use image from Docker Hub.
-	// "image": "emergy/devcontainer-ansible",
+ 	"image": "emergy/devcontainer-ansible",
 
 	// Build local image. Use 'dockerFile' to specify a Dockerfile in the repository.
-	"build": {
-		"dockerfile": "Dockerfile",
-		"context": ".",
-		"args": { 
-			// Update 'VARIANT' to pick a Debian variant: buster, bullseye, or sid
-			"VARIANT": "bookworm"
-		}
-	},
+	// "build": {
+	// 	"dockerfile": "Dockerfile",
+	// 	"context": ".",
+	// 	"args": { 
+	// 		// Update 'VARIANT' to pick a Debian variant: buster, bullseye, or sid
+	// 		"VARIANT": "bookworm"
+	// 	}
+	// },
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {
