@@ -20,8 +20,6 @@ FROM mcr.microsoft.com/devcontainers/base:${VARIANT}
 
 USER root
 
-COPY --from=builder /.test /tmp/.test
-
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
     apt-get install -y wget && \
