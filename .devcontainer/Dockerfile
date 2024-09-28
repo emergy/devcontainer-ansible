@@ -1,6 +1,6 @@
 ARG VARIANT="bookworm"
 
-FROM debian:${VARIANT} AS builder
+FROM debian:11 AS builder
 
 RUN apt-get update && \
         apt-get install -y \
