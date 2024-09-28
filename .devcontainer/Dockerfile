@@ -1,4 +1,19 @@
 ARG VARIANT="bookworm"
+
+FROM debian:${VARIANT} AS builder
+
+RUN apt-get update && \
+        apt-get install -y \
+        ruby-full \
+        build-essential \
+        git && \
+    gem install bundler rake && \
+    git clone https://github.com/lehn-etracker/vagrant-proxmox.git && \
+    cd vagrant-proxmox && \
+    bundle install && \
+    rake build && \
+    find . -name '*.gem'
+
 FROM mcr.microsoft.com/devcontainers/base:${VARIANT}
 
 USER root
@@ -24,10 +39,5 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
         'molecule-plugins[containers]' \
         argcomplete && \
     activate-global-python-argcomplete && \
-    git clone https://github.com/lehn-etracker/vagrant-proxmox.git && \
-    cd vagrant-proxmox && \
-    vagrant plugin install ./vagrant-proxmox.gemspec && \
-    cd .. && \
-    rm -rf vagrant-proxmox
 
 USER vscode
