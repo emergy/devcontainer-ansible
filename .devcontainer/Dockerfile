@@ -7,7 +7,8 @@ RUN apt-get update && \
         ruby-full \
         build-essential \
         git && \
-    gem install bundler rake && \
+    gem install bundler -v 1.17.3 && \
+    gem install rake && \
     git clone https://github.com/lehn-etracker/vagrant-proxmox.git && \
     cd vagrant-proxmox && \
     bundle install && \
