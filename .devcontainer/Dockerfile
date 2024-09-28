@@ -29,7 +29,6 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get -y install --no-install-recommends \
         vagrant \
         python3-pip && \
-        ruby-full && \
         build-essential && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
@@ -42,6 +41,9 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
         'molecule-plugins[docker]' \
         'molecule-plugins[containers]' \
         argcomplete && \
-    activate-global-python-argcomplete
+        vim && \
+    activate-global-python-argcomplete && \
+    mkdir -p /src && \
+    git clone https://github.com/lehn-etracker/vagrant-proxmox.git
 
 USER vscode
