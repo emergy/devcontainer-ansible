@@ -1,0 +1,62 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/debian
+{
+	"name": "ansible",
+
+	// Use image from Docker Hub.
+	// "image": "emergy/devcontainer-ansible",
+
+	// Build local image. Use 'dockerFile' to specify a Dockerfile in the repository.
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": ".",
+		"args": { 
+			// Update 'VARIANT' to pick a Debian variant: buster, bullseye, or sid
+			"VARIANT": "bookworm"
+		}
+	},
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {
+    //     "ghcr.io/devcontainers/features/common-utils:2": {
+    //         "installZsh": "false",
+    //         "configureZshAsDefaultShell": "false",
+    //         "username": "vscode",
+    //         "userUid": "1000",
+    //         "userGid": "1000",
+    //         "upgradePackages": "false"
+    //     }
+	// },
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			// Install extensions for Visual Studio Code.
+			"extensions": [
+				"ms-azuretools.vscode-docker",
+				"ziyasal.vscode-open-in-github",
+				"redhat.vscode-yaml",
+				"eriklynd.json-tools",
+				"redhat.ansible",
+				"github.vscode-github-actions"
+			]
+		}
+	},
+
+	"mounts": [
+		// .ssh: Mount the local .ssh directory into the container to support SSH key-based authentication.
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
+
+		// .gitconfig: Mount the local .gitconfig file into the container to support Git configuration.
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached",
+
+		// /var/run/docker.sock: Mount the Docker socket so the container can access the Docker daemon.
+		"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+	],
+
+	// Uncomment to use the Docker CLI from inside the container. See https://aka.ms/vscode-remote/samples/docker-in-docker.
+	"runArgs": [ "--init", "--privileged" ]
+}
