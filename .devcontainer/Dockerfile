@@ -1,21 +1,5 @@
 ARG VARIANT="bookworm"
 
-# FROM debian:11 AS builder
-
-# RUN apt-get update && \
-#         apt-get install -y \
-#         ruby-full \
-#         build-essential \
-#         git && \
-#     gem install bundler -v 1.17.3 && \
-#     gem install rake && \
-#     git clone https://github.com/lehn-etracker/vagrant-proxmox.git && \
-#     cd vagrant-proxmox && \
-#     bundle install && \
-#     rake build && \
-#     find . -name '*.gem' && \
-#     echo "OK" > /.test
-
 FROM mcr.microsoft.com/devcontainers/base:${VARIANT}
 
 USER root
@@ -29,7 +13,6 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get -y install --no-install-recommends \
         vagrant \
         python3-pip && \
-        build-essential && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     pip3 install --no-cache-dir --break-system-packages \
