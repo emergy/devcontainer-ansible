@@ -4,7 +4,7 @@ FROM debian:11 AS builder
 
 RUN apt-get update && \
         apt-get install -y \
-        ruby-full \
+        ruby2.6 ruby2.6-dev \
         build-essential \
         git && \
     gem install bundler -v 1.17.3 && \
