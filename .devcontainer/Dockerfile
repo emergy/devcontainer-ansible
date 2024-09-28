@@ -1,5 +1,5 @@
 ARG VARIANT="bookworm"
-FROM mcr.microsoft.com/devcontainers/base:bookworm
+FROM mcr.microsoft.com/devcontainers/base:${VARIANT}
 
 USER root
 
