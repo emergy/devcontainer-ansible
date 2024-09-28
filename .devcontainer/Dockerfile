@@ -23,7 +23,11 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
         'molecule-plugins[docker]' \
         'molecule-plugins[containers]' \
         argcomplete && \
-    activate-global-python-argcomplete
-    # vagrant plugin install vagrant-proxmox
+    activate-global-python-argcomplete && \
+    git clone https://github.com/lehn-etracker/vagrant-proxmox.git && \
+    cd vagrant-proxmox && \
+    vagrant plugin install ./vagrant-proxmox.gemspec && \
+    cd .. && \
+    rm -rf vagrant-proxmox
 
 USER vscode
