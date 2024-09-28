@@ -12,11 +12,14 @@ RUN apt-get update && \
     cd vagrant-proxmox && \
     bundle install && \
     rake build && \
-    find . -name '*.gem'
+    find . -name '*.gem' && \
+    echo "OK" > /.test
 
 FROM mcr.microsoft.com/devcontainers/base:${VARIANT}
 
 USER root
+
+COPY --from=builder /.test /tmp/.test
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
@@ -38,6 +41,6 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
         'molecule-plugins[docker]' \
         'molecule-plugins[containers]' \
         argcomplete && \
-    activate-global-python-argcomplete && \
+    activate-global-python-argcomplete
 
 USER vscode
